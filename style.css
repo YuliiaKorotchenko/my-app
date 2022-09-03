@@ -1,0 +1,50 @@
+.container {
+  display: block;
+  margin: 0 auto;
+  max-width: 750px;
+  font-family: "DynaPuff", cursive;
+  padding: 25px;
+  border: 2px solid;
+  border-color: rgb(188, 188, 188);
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px;
+  background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  border-radius: 10px;
+}
+.card {
+  border: none;
+  margin: 10px;
+}
+
+.form-control {
+  width: 50%;
+  height: 10%;
+}
+.weather {
+  font-size: 40px;
+  vertical-align: middle;
+}
+.row {
+  margin: 0 auto;
+}
+
+.fahrenheit,
+.celsius,
+.celsiusFah {
+  color: black;
+}
+
+.fahrenheit:hover,
+.celsius:hover {
+  cursor: pointer;
+  color: #c1c0b9;
+  font-size: 25px;
+}
+#search {
+  background-color: #e7e6e1;
+  border-color: #e7e6e1;
+}
+#gps {
+  background-color: #c1c0b9;
+  border-color: #c1c0b9;
+}
