@@ -58,27 +58,27 @@ displayTime.innerHTML = formatedHour(currentTime);
 
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#temper").innerHTML = Math.round(
-    response.data.main.temp
-  );
-
+  document.querySelector("#temper").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].description;
-    
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#description").innerHTML = response.data.weather[0].description;
+  tempC = response.data.main.temp;
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
-    iconElement.setAttribute("alt", response.data.weather[0].description);
-    getsearchLocation(response.data.coord);
-    
-   
+    iconElement.setAttribute("alt", response.data.weather[0].description);   
+  }
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
 }
+
 
 function searchCity(city) {
   let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
@@ -94,10 +94,7 @@ function handleSubmit(event) {
 
 function searchLocation(position) {
   let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${
-    position.coords.latitude
-  }&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -106,21 +103,21 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function fahrenheitShow(event) {
+  event.preventDefault();  
+  let tempElement = document.querySelector("#temper");
+  let temperF=(tempC*9/5)+32;
+  tempElement.innerHTML = Math.round(temperF);
+}
 function celsiusShow(event) {
   event.preventDefault();
-  let temperC=25;
-  let tempC = document.querySelector("#temper");
-  tempC.innerHTML = temperC;
+  let tempElement = document.querySelector("#temper");
+    tempElement.innerHTML = Math.round(tempC);
 }
+
+let tempC=null;
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", celsiusShow);
-
-function fahrenheitShow(event) {
-  event.preventDefault();
-  let temperF=(25*9/5)+32;
-    let tempF = document.querySelector("#temper");
-  tempF.innerHTML = temperF;
-}
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", fahrenheitShow);
 
