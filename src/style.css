@@ -48,3 +48,6 @@
   background-color: #c1c0b9;
   border-color: #c1c0b9;
 }
+#description {
+  text-transform: capitalize;
+}

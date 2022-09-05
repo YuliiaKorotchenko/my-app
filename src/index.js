@@ -55,6 +55,7 @@ displayDate.innerHTML = formatedDay(currentTime);
 let displayTime = document.querySelector("p.time-today");
 displayTime.innerHTML = formatedHour(currentTime);
 
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temper").innerHTML = Math.round(
@@ -67,6 +68,14 @@ function displayWeatherCondition(response) {
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
+    
+    let iconElement = document.querySelector("#icon");
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    iconElement.setAttribute("alt", response.data.weather[0].description);
+    getsearchLocation(response.data.coord);
     
    
 }
