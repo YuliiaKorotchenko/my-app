@@ -139,8 +139,13 @@ let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", celsiusShow);
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", fahrenheitShow);
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 let searchForm = document.querySelector("#search");
 searchForm.addEventListener("click", handleSubmit);
+
+
 let currentLocationButton = document.querySelector("#gps");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
